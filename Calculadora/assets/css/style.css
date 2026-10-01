@@ -1,0 +1,268 @@
+/* ===== Tokens de cor =====
+   Tema claro é o padrão; o escuro é ativado por [data-theme="dark"] */
+:root {
+  --bg: #F1F5F9;
+  --card: #FFFFFF;
+  --display: #F8FAFC;
+  --border: #E2E8F0;
+  --text: #0F172A;
+  --sub: #64748B;
+
+  --num: #F1F5F9;
+  --fn: #E2E8F0;
+  --fn-text: #0F172A;
+  --op: #6366F1;
+  --op-text: #FFFFFF;
+  --eq: #4F46E5;
+  --eq-text: #FFFFFF;
+  --clear: #EF4444;
+  --clear-text: #FFFFFF;
+
+  --track: #CBD5E1;
+  --knob: #FFFFFF;
+  --focus: #6366F1;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+[data-theme="dark"] {
+  --bg: #0F172A;
+  --card: #1E293B;
+  --display: #0B1220;
+  --border: #334155;
+  --text: #F1F5F9;
+  --sub: #94A3B8;
+
+  --num: #334155;
+  --fn: #475569;
+  --fn-text: #F1F5F9;
+  --op: #818CF8;
+  --op-text: #0F172A;
+  --eq: #6366F1;
+  --eq-text: #FFFFFF;
+  --clear: #F87171;
+  --clear-text: #0F172A;
+
+  --track: #818CF8;
+  --knob: #0F172A;
+  --focus: #818CF8;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== Base ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+p,
+h1 {
+  margin: 0;
+}
+
+/* ===== Cartão da calculadora ===== */
+.calculator {
+  width: 100%;
+  max-width: 360px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+/* ===== Cabeçalho e alternador de tema ===== */
+.calculator__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calculator__title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.theme {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme__label {
+  font-size: 12px;
+  color: var(--sub);
+}
+
+.theme__toggle {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  background: var(--track);
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.theme__knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--knob);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.theme__toggle[aria-checked="true"] .theme__knob {
+  transform: translateX(24px);
+}
+
+/* ===== Display ===== */
+.display {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--display);
+  border-radius: 20px;
+  text-align: right;
+  overflow: hidden;
+  transition: background-color 0.25s ease;
+}
+
+.display__expression {
+  min-height: 20px;
+  font-size: 16px;
+  color: var(--sub);
+  white-space: nowrap;
+}
+
+.display__result {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 58px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  transition: font-size 0.15s ease;
+}
+
+/* A fonte diminui automaticamente quando o número fica longo */
+.display__result.is-md {
+  font-size: 36px;
+}
+
+.display__result.is-sm {
+  font-size: 28px;
+}
+
+/* ===== Teclado ===== */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.btn {
+  height: 64px;
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  font-family: inherit;
+  font-size: 24px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease, background-color 0.25s ease;
+}
+
+.btn:hover {
+  filter: brightness(1.06);
+}
+
+.btn:active,
+.btn.is-pressed {
+  transform: scale(0.95);
+}
+
+.btn:focus-visible,
+.theme__toggle:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.btn--num {
+  background: var(--num);
+  color: var(--text);
+}
+
+.btn--fn {
+  background: var(--fn);
+  color: var(--fn-text);
+  font-size: 22px;
+}
+
+.btn--op {
+  background: var(--op);
+  color: var(--op-text);
+  font-size: 26px;
+}
+
+.btn--eq {
+  background: var(--eq);
+  color: var(--eq-text);
+  font-size: 26px;
+}
+
+.btn--clear {
+  background: var(--clear);
+  color: var(--clear-text);
+  font-size: 22px;
+}
+
+.btn--zero {
+  grid-column: span 2;
+}
+
+/* ===== Telas muito estreitas ===== */
+@media (max-width: 380px) {
+  .calculator {
+    padding: 18px;
+  }
+
+  .keypad {
+    gap: 10px;
+  }
+
+  .btn {
+    height: 58px;
+  }
+}
+
+/* ===== Respeita quem prefere menos movimento ===== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

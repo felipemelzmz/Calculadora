@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora Online</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="shortcut icon" href="assets/img/icon-page.ico" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/script.js" defer></script>
+</head>
+<body>
+  <main class="calculator" aria-label="Calculadora">
+
+    <header class="calculator__header">
+      <h1 class="calculator__title">Calculadora</h1>
+
+      <div class="theme">
+        <span class="theme__label" id="themeLabel">Modo claro</span>
+        <button
+          type="button"
+          class="theme__toggle"
+          id="themeToggle"
+          role="switch"
+          aria-checked="false"
+          aria-labelledby="themeLabel">
+          <span class="theme__knob"></span>
+        </button>
+      </div>
+    </header>
+
+    <section class="display" aria-live="polite">
+      <p class="display__expression" id="expression">&nbsp;</p>
+      <p class="display__result" id="result">0</p>
+    </section>
+
+    <section class="keypad" aria-label="Teclado">
+      <button type="button" class="btn btn--clear" data-action="clear" data-key="Escape" aria-label="Limpar">C</button>
+      <button type="button" class="btn btn--fn" data-action="sign" aria-label="Inverter sinal">±</button>
+      <button type="button" class="btn btn--fn" data-action="percent" data-key="%" aria-label="Porcentagem">%</button>
+      <button type="button" class="btn btn--op" data-operator="divide" data-key="/" aria-label="Dividir">÷</button>
+
+      <button type="button" class="btn btn--num" data-digit="7" data-key="7">7</button>
+      <button type="button" class="btn btn--num" data-digit="8" data-key="8">8</button>
+      <button type="button" class="btn btn--num" data-digit="9" data-key="9">9</button>
+      <button type="button" class="btn btn--op" data-operator="multiply" data-key="*" aria-label="Multiplicar">×</button>
+
+      <button type="button" class="btn btn--num" data-digit="4" data-key="4">4</button>
+      <button type="button" class="btn btn--num" data-digit="5" data-key="5">5</button>
+      <button type="button" class="btn btn--num" data-digit="6" data-key="6">6</button>
+      <button type="button" class="btn btn--op" data-operator="subtract" data-key="-" aria-label="Subtrair">−</button>
+
+      <button type="button" class="btn btn--num" data-digit="1" data-key="1">1</button>
+      <button type="button" class="btn btn--num" data-digit="2" data-key="2">2</button>
+      <button type="button" class="btn btn--num" data-digit="3" data-key="3">3</button>
+      <button type="button" class="btn btn--op" data-operator="add" data-key="+" aria-label="Somar">+</button>
+
+      <button type="button" class="btn btn--num btn--zero" data-digit="0" data-key="0">0</button>
+      <button type="button" class="btn btn--num" data-action="dot" data-key="." aria-label="Vírgula decimal">.</button>
+      <button type="button" class="btn btn--eq" data-action="equals" data-key="Enter" aria-label="Igual">=</button>
+    </section>
+
+  </main>
+</body>
+</html>
